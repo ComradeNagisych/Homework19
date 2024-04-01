@@ -10,17 +10,17 @@ import java.util.Collection;
 public class SetBasedEmployeeService implements EmployeeService {
 
     @Override
-    public Employee add(String firstName, String lastName) {
-        return new Employee("Ivan", "Ivanov");
+    public Employee add(String firstName, String lastName, int salary, int departmant) {
+        return new Employee("Ivan", "Ivanov", 70000, 1);
     }
 
     @Override
-    public void remove(String firstName, String lastName) {
+    public void remove(String firstName, String lastName, int salary, int department) {
 
     }
 
     @Override
-    public Employee find(String firstName, String lastname) {
+    public Employee find(String firstName, String lastname, int salary, int department) {
         return null;
     }
 
