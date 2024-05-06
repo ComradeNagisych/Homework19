@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tv.ksstream.homework19.model.Employee;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class DepartmentServiceTest {
     @InjectMocks
-    private DepartmentService departmentService;
+    private DepartmentServiceImpl departmentService;
     @Mock
     private EmployeeService employeeService;
     private List<Employee> employees = List.of(
@@ -51,10 +52,23 @@ public class DepartmentServiceTest {
         when(employeeService.findAll()).thenReturn(employees);
         Map<Integer, List<Employee>> result = departmentService.findEmployeeByDepartment();
         Assertions.assertEquals(2, result.size());
-        Assertions.assertEquals(2, result.get(1).size());
-        Assertions.assertEquals(1, result.get(2).size());
         org.assertj.core.api.Assertions.assertThat(result.get(1))
                 .hasSize(2)
-                .contains(e)
+                .contains(employees.get(0), employees.get(1));
+        org.assertj.core.api.Assertions.assertThat(result.get(2))
+                .hasSize(1)
+                .contains(employees.get(2));
+    }
+    @Test
+    public void toReturnEmployeeDividedInDepartment1() {
+        when(employeeService.findAll()).thenReturn(employees);
+        Collection<Employee> employeeCollection = departmentService.findEmployeeDividedInDepartments(1);
+        Assertions.assertEquals(2, employeeCollection.size());
+    }
+    @Test
+    public void toReturnEmployeeDividedInDepartment2() {
+        when(employeeService.findAll()).thenReturn(employees);
+        Collection<Employee> employeeCollection = departmentService.findEmployeeDividedInDepartments(2);
+        Assertions.assertEquals(1, employeeCollection.size());
     }
 }
