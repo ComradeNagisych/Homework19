@@ -15,8 +15,9 @@ public class SetBasedEmployeeService implements EmployeeService {
     }
 
     @Override
-    public void remove(String firstName, String lastName, int salary, int department) {
+    public Employee remove(String firstName, String lastName, int salary, int department) {
 
+        return null;
     }
 
     @Override

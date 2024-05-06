@@ -24,14 +24,15 @@ public class MapBasedEmployeeService implements EmployeeService {
         return employee;
     }
     @Override
-    public void remove(String firstName, String lastName, int salary, int department) {
+    public Employee remove(String firstName, String lastName, int salary, int department) {
         if (!storage.containsKey(firstName + lastName + salary + department)) {
             throw new EmployeeNotFoundException("Employee not found, removal impossible");
         }
         storage.remove(firstName + lastName + salary + department);
+        return null;
     }
     @Override
-    public Employee find(String firstName, String lastName, int salary, int department) {
+    public Employee find(String firstName, String lastName, int salary, int department) throws EmployeeNotFoundException {
         if (!storage.containsKey(firstName + lastName + salary + department)) {
             throw new EmployeeNotFoundException("Employee not found, search stopped");
         }

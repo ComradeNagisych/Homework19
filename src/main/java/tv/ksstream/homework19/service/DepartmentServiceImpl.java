@@ -1,5 +1,6 @@
 package tv.ksstream.homework19.service;
 
+import org.springframework.stereotype.Service;
 import tv.ksstream.homework19.exception.EmployeeNotFoundException;
 import tv.ksstream.homework19.model.Employee;
 
@@ -7,6 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
+@Service
 
 public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeService employeeService;
